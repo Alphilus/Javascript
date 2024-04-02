@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dog Breeds</title>
+</head>
+<body>
+    <h2>Main Breeds</h2>
+    <select id="breed-list"></select>
+    <button onclick="getSubBreeds()">Get Sub Breeds</button>
+
+    <h2>Sub Breeds</h2>
+    <ul id="sub-breed-list"></ul> <!-- Changed to <ul> element -->
+
+    <h2>Random Sub Breed Image</h2>
+    <div id="random-sub-breed-image"></div>
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
