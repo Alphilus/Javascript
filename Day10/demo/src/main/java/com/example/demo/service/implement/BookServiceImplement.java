@@ -26,7 +26,7 @@ public class BookServiceImplement implements BookService {
     }
 
     @Override
-    public Book getBooksByTitle(String title) {
+    public List<Book> getBooksByTitle(String title) {
         return bookDAO.findByTitle(title);
     }
 

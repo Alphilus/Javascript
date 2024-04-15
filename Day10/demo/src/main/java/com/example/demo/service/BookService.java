@@ -9,7 +9,7 @@ public interface BookService {
 
     List<Book> sortBooksByYears();
 
-    Book getBooksByTitle(String title);
+    List<Book> getBooksByTitle(String title);
 
     List<Book> getBooksBetweenYears(int startYear, int endYear);
 }

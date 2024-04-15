@@ -41,7 +41,7 @@ public class BookController {
 
     @GetMapping("/search/{title}")
     @ResponseBody
-    public  Book findBooksByKeyword(@PathVariable String title){
+    public List<Book> findBooksByKeyword(@PathVariable String title){
         return bookService.getBooksByTitle(title);
     }
 

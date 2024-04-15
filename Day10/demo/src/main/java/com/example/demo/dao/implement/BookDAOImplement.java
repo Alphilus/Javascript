@@ -3,11 +3,10 @@ package com.example.demo.dao.implement;
 import com.example.demo.dao.BookDAO;
 import com.example.demo.database.BookDB;
 import com.example.demo.model.Book;
-import com.example.demo.service.BookService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Repository
 public class BookDAOImplement implements BookDAO {
@@ -24,30 +23,22 @@ public class BookDAOImplement implements BookDAO {
 
     @Override
     public List<Book> sortByYears() {
-        BookDB.books.sort(Comparator.comparingInt(Book::getYear));
-        return BookDB.books;
+        return books.stream()
+                .sorted(Comparator.comparingInt(Book::getYear).reversed())
+                .collect(Collectors.toList());
     }
 
     @Override
-    public Book findByTitle(String title) {
-        for (Book book : BookDB.books){
-            if (Objects.equals(book.getTitle(), title)){
-                return book;
-            }
-        }
-        return null;
+    public List<Book> findByTitle(String title) {
+        return books.stream()
+                .filter(book -> book.getTitle().toLowerCase().contains(title.toLowerCase()))
+                .collect(Collectors.toList());
     }
 
     @Override
     public List<Book> findBetweenYears(int startYear, int endYear) {
-        List<Book> booksBetweenYears = new ArrayList<>();
-
-        for (Book book : BookDB.books){
-            if (book.getYear() >= startYear && book.getYear() <= endYear){
-                booksBetweenYears.add(book);
-            }
-        }
-
-        return booksBetweenYears.isEmpty() ? null : booksBetweenYears;
+        return books.stream()
+                .filter(book -> book.getYear() >= startYear && book.getYear() <= endYear)
+                .collect(Collectors.toList());
     }
 }

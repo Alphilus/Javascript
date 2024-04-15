@@ -9,7 +9,7 @@ public interface BookDAO {
 
     List<Book> sortByYears();
 
-    Book findByTitle(String title);
+    List<Book> findByTitle(String title);
 
     List<Book> findBetweenYears(int startYear, int endYear);
 }
