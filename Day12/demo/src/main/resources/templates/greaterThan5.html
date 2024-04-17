@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>GreaterThan5</title>
+</head>
+<body>
+<h1>Các giá trị lớn hơn 5 trong danh sách:</h1>
+<ul>
+    <li th:each="numbers : ${greaterThan5}" th:text="${numbers}"></li>
+</ul>
+</body>
+</html>

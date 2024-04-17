@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Thymeleaf</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <h1>Math</h1>
+
+    <ul>
+        <li><a th:href="@{/evenNumbers.html}">Tìm các giá trị chẵn trong list</a></li>
+        <li><a th:href="@{/greaterThan5.html}">Tìm các giá trị > 5 trong list</a></li>
+        <li><a th:href="@{/maxNumber.html}">Tìm giá trị max trong list</a></li>
+        <li><a th:href="@{/minNumber.html}">Tìm giá trị min trong list</a></li>
+        <li><a th:href="@{/sum.html}">Tính tổng các phần tử của mảng</a></li>
+        <li><a th:href="@{/distinctNumbers.html}">Lấy danh sách các phần tử không trùng nhau</a></li>
+        <li><a th:href="@{/first5Numbers.html}">Lấy 5 phần tử đầu tiên trong mảng</a></li>
+        <li><a th:href="@{/list3to5Numbers.html}">Lấy phần tử từ thứ 3 -> thứ 5</a></li>
+        <li><a th:href="@{/firstGreaterThan5.html}">Lấy phần tử đầu tiên > 5</a></li>
+    </ul>
+
+    <script th:href="@{/js/main.js}"></script>
+</body>
+</html>
