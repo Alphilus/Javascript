@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Products</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<h1>Products</h1>
+
+<div class="search-bar">
+    <form th:action="@{/search}" method="get">
+        <input type="text" name="keywords" placeholder="Search Product...">
+        <button type="submit">Search</button>
+    </form>
+</div>
+
+<div class="sorting-options">
+    <a th:href="@{/sort}">Sort by Rating (Low to High)</a>
+    <a th:href="@{/sortReverse}">Sort by Rating (High to Low)</a>
+</div>
+
+<div th:each="product : ${pageData.content}" class="product-item">
+    <div class="product-image">
+        <img th:src="@{${product.thumbnail}}" th:alt="${product.name}">
+    </div>
+    <h2 th:text="${product.name}"></h2>
+    <p th:text="'Price: ' + ${product.price}"></p>
+    <p th:text="'Rating: ' + ${product.rating}"></p>
+    <a th:href="@{/products/{id}(id=${product.id})}">View Details</a>
+</div>
+
+<div class="pagination">
+    <form th:action="@{/}" method="get">
+        <button type="submit" th:disabled="${pageData.currentPage == 1}"
+                th:attr="onclick=${pageData.currentPage > 1 ? 'page=' + (pageData.currentPage - 1) : ''}">
+            Trước
+        </button>
+        <th:block th:each="page, iterStat : ${#numbers.sequence(1, pageData.totalPages)}">
+            <button type="submit" th:text="${page}"
+                    th:attr="onclick=${pageData.currentPage > 1 ? 'page=' + (pageData.currentPage - 1) : ''}"
+                    th:class="${page == pageData.currentPage ? 'active' : ''}"></button>
+        </th:block>
+        <button type="submit" th:disabled="${pageData.currentPage == pageData.totalPages}"
+                th:attr="onclick=${pageData.currentPage < pageData.totalPages ? 'page=' + (pageData.currentPage + 1) : ''}">
+            Sau
+        </button>
+    </form>
+</div>
+
+<script src=""></script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Product Detail</title>
+</head>
+<body>
+<h1>Product Detail</h1>
+<div>
+    <div class="product-image">
+        <img th:src="@{${product.thumbnail}}" th:alt="${product.name}">
+    </div>
+    <h2 th:text="${product.name}"></h2>
+    <p th:text="'Description: ' + ${product.description}"></p>
+    <p th:text="'Price: ' + ${product.price}"></p>
+</div>
+
+<div>
+    <h3>Reviews</h3>
+    <div th:each="review : ${reviews}">
+        <div>
+            <img th:src="${review.authorAvatar}" alt="Reviewer Avatar" style="width: 50px; height: 50px;">
+            <p th:text="'Rating: ' + ${review.rating}"></p>
+            <p th:text="'Author: ' + ${review.authorName}"></p>
+            <p th:text="'Content: ' + ${review.content}"></p>
+            <p th:text="'Created At: ' + ${#dates.format(#dates.createNow(), 'dd-MM-yyyy HH:mm:ss')}"></p>
+        </div>
+    </div>
+</div>
+</body>
+</html>
