@@ -1,6 +1,5 @@
 package com.example.demo.entity;
 
-import com.example.demo.enums.UserRole;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -14,23 +13,24 @@ import java.time.LocalDateTime;
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
-@Table(name = "users")
-public class User {
+@Table(name = "blogs")
+public class Blog {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
-    @Column(nullable = false)
-    String name;
-    @Column(nullable = false, unique = true)
-    String email;
 
-    String avatar;
+    String title;
+    String slug;
 
-    @Column(nullable = false)
-    String password;
+    @Column(columnDefinition = "TEXT")
+    String description;
 
-    @Enumerated(EnumType.STRING)
-    UserRole role;
+    @Column(columnDefinition = "TEXT")
+    String content;
+
+    String thumbnail;
+    Boolean status;
+
     LocalDateTime createdAt;
     LocalDateTime updatedAt;
 }

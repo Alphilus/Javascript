@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Phim Chiếu Rạp</title>
+</head>
+<body>
+<h1>Danh sách phim chiếu rạp</h1>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Tên phim</th>
+        <!-- Các cột dữ liệu khác nếu cần -->
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="phimChieuRap : ${danhSachPhimChieuRap}">
+        <td th:text="${phimChieuRap.id}">ID</td>
+        <td th:text="${phimChieuRap.name}" >Tên phim</td>
+        <!-- Các cột dữ liệu khác nếu cần -->
+</body>
+</html>

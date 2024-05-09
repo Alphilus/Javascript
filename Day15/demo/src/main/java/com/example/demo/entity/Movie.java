@@ -2,49 +2,38 @@ package com.example.demo.entity;
 
 import com.example.demo.enums.MovieType;
 import jakarta.persistence.*;
+import lombok.*;
+import lombok.experimental.FieldDefaults;
 
 import java.time.LocalDateTime;
-
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
+@Builder
+@FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
+@Table(name = "movies")
 public class Movie {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    Integer id;
 
-    @Column(nullable = false)
-    private String name;
+    String name;
+    String slug;
 
-    @Column(nullable = false)
-    private String slug;
+    @Column(columnDefinition = "TEXT")
+    String description;
 
-    @Column(nullable = false, columnDefinition = "TEXT")
-    private String description;
-
-    @Column(nullable = false)
-    private String poster;
-
-    @Column(name = "release_year", nullable = false)
-    private int releaseYear;
-
-    @Column(nullable = false)
-    private double rating;
+    String poster;
+    Integer releaseYear;
+    Double rating;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    private MovieType type;
+    MovieType type;
 
-    @Column(nullable = false)
-    private boolean status;
-
-    @Column(nullable = false)
-    private String trailer;
-
-    @Column(name = "country_id", nullable = false)
-    private Long countryId;
-
-    @Column(name = "created_at", nullable = false)
-    private LocalDateTime createdAt;
-
-    @Column(name = "updated_at", nullable = false)
-    private LocalDateTime updatedAt;
+    Boolean status;
+    String trailer;
+    LocalDateTime createdAt;
+    LocalDateTime updatedAt;
 }
