@@ -1,7 +1,9 @@
 package com.example.demo;
 
+import com.example.demo.entity.Blog;
 import com.example.demo.entity.Movie;
 import com.example.demo.enums.MovieType;
+import com.example.demo.repository.BlogRepository;
 import com.example.demo.repository.MovieRepository;
 import com.github.javafaker.Faker;
 import com.github.slugify.Slugify;
@@ -20,6 +22,9 @@ import java.util.Random;
 class DemoApplicationTests {
 	@Autowired
 	private MovieRepository movieRepository;
+
+	@Autowired
+	private BlogRepository blogRepository;
 
 	@Test
 	void save_movies() {
@@ -43,6 +48,28 @@ class DemoApplicationTests {
 					.updatedAt(LocalDateTime.now())
 					.build();
 			movieRepository.save(movie);
+		}
+	}
+
+	@Test
+	void save_blogs(){
+		Random random = new Random();
+		Faker faker = new Faker();
+		Slugify slugify = Slugify.builder().build();
+
+		for (int i = 0; i < 30; i++) {
+			String title = faker.book().title();
+            Blog blog = Blog.builder()
+                    .title(title)
+                    .slug(slugify.slugify(title))
+                    .content(faker.lorem().sentence(500))
+					.thumbnail("https://placehold.co/600x400?text=" + String.valueOf(title.charAt(0)).toUpperCase())
+					.description(faker.lorem().paragraph())
+                    .status(faker.bool().bool())
+                    .createdAt(LocalDateTime.now())
+                    .updatedAt(LocalDateTime.now())
+                    .build();
+            blogRepository.save(blog);
 		}
 	}
 
