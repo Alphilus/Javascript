@@ -33,4 +33,8 @@ public class Blog {
 
     LocalDateTime createdAt;
     LocalDateTime updatedAt;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    User user;
 }

@@ -6,6 +6,8 @@ import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import java.time.LocalDateTime;
+import java.util.List;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -36,4 +38,32 @@ public class Movie {
     String trailer;
     LocalDateTime createdAt;
     LocalDateTime updatedAt;
+
+    @ManyToOne
+    @JoinColumn(name = "country_id")
+    Country country;
+
+    @ManyToMany
+    @JoinTable(
+            name = "movies_genres",
+            joinColumns = @JoinColumn(name = "movie_id"),
+            inverseJoinColumns = @JoinColumn(name = "genre_id")
+    )
+    List<Genre> genres;
+
+    @ManyToMany
+    @JoinTable(
+            name = "movie_actor",
+            joinColumns = @JoinColumn(name = "movie_id"),
+            inverseJoinColumns = @JoinColumn(name = "actor_id")
+    )
+    List<Actor> actors;
+
+    @ManyToMany
+    @JoinTable(
+            name = "movie_director",
+            joinColumns = @JoinColumn(name = "movie_id"),
+            inverseJoinColumns = @JoinColumn(name = "director_id")
+    )
+    List<Director> directors;
 }
