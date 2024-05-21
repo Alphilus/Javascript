@@ -121,7 +121,8 @@
                         <span><i class="fa-solid fa-play"></i></span>
                         Xem phim</a>
                 </th:block>
-
+                <button id="addToFavoriteBtn" class="btn btn-primary">Thêm vào yêu thích</button>
+                <button id="removeFromFavoriteBtn" class="btn btn-danger">Xóa khỏi yêu thích</button>
             </div>
         </div>
 
@@ -287,6 +288,41 @@
                 // If the form is valid, you can proceed with form submission
                 form.submit();
             }
+        });
+    });
+</script>
+
+<script>
+    $(document).ready(function() {
+        const userId = [[${session.currentUser.id}]];
+        const movieId = [[${movie.id}]];
+
+        $('#addToFavoriteBtn').click(function() {
+            $.post('/api/users/favorites/add', { userId: userId, movieId: movieId }, function(data) {
+                // Cập nhật trạng thái của nút dựa trên phản hồi từ máy chủ
+                if (data.added) {
+                    $('#addToFavoriteBtn').hide();
+                    $('#removeFromFavoriteBtn').show();
+                } else {
+                    alert('Có lỗi xảy ra khi thêm phim vào danh sách yêu thích.');
+                }
+            }).fail(function() {
+                alert('Không thể kết nối đến máy chủ. Vui lòng thử lại sau.');
+            });
+        });
+
+        $('#removeFromFavoriteBtn').click(function() {
+            $.post('/api/users/favorites/remove', { userId: userId, movieId: movieId }, function(data) {
+                // Cập nhật trạng thái của nút dựa trên phản hồi từ máy chủ
+                if (data.removed) {
+                    $('#removeFromFavoriteBtn').hide();
+                    $('#addToFavoriteBtn').show();
+                } else {
+                    alert('Có lỗi xảy ra khi xóa phim khỏi danh sách yêu thích.');
+                }
+            }).fail(function() {
+                alert('Không thể kết nối đến máy chủ. Vui lòng thử lại sau.');
+            });
         });
     });
 </script>

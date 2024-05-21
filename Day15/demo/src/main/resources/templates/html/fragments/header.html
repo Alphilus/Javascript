@@ -42,13 +42,13 @@
                                     <a class="dropdown-item" href="/admin">Trang quản trị</a>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item" href="/thong-tin-ca-nhan">Thông tin cá nhân</a>
+                                    <a class="dropdown-item" th:href="@{/user/{id}/{email}(id=${session.currentUser.id}, email=${session.currentUser.email})}">Thông tin cá nhân</a>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item" href="/lich-su-xem-phim">Lịch sử xem phim</a>
+                                    <a class="dropdown-item" href="/lich-su-xem-phim">Lịch sử xem <ph></ph>im</a>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item" href="/phim-yeu-thich">Phim yêu thích</a>
+                                    <a class="dropdown-item" th:href="@{/user/{id}/{email}/favorite (id=${session.currentUser.id}, email=${session.currentUser.email})}">Phim yêu thích</a>
                                 </li>
                                 <li>
                                     <hr class="dropdown-divider">

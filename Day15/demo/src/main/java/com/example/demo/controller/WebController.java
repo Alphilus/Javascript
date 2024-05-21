@@ -2,10 +2,8 @@ package com.example.demo.controller;
 
 import com.example.demo.entity.*;
 import com.example.demo.model.enums.MovieType;
-import com.example.demo.service.BlogService;
-import com.example.demo.service.CommentService;
-import com.example.demo.service.MovieService;
-import com.example.demo.service.ReviewService;
+import com.example.demo.service.*;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -31,6 +29,12 @@ public class WebController {
 
     @Autowired
     private ReviewService reviewService;
+
+    @Autowired
+    private UserService userService;
+
+    private final HttpSession session;
+
 
     @GetMapping("/")
     public String getHomePage(Model model,
@@ -115,5 +119,28 @@ public class WebController {
     @GetMapping("/dang-nhap")
     public String getLoginPage() {
         return "html/login";
+    }
+
+    @GetMapping("/user/{id}/{email}")
+    public String getUserPage(Model model, @PathVariable Integer id, @PathVariable String email) {
+        User users = userService.getUserByNameAndEmail(id, email);
+        model.addAttribute("users", users);
+        return "html/user";
+    }
+
+    @GetMapping("/user/{id}/{email}/favorite")
+    public String getFavoriteMovies(Model model, @PathVariable Integer id, @PathVariable String email) {
+        User user = userService.getUserByNameAndEmail(id, email);
+
+        if (user == null){
+            return "html/index";
+        }
+
+        List<Movie> favoriteMovies = userService.getFavoritesById(user.getId());
+
+        model.addAttribute("user", user);
+        model.addAttribute("favoriteMovies", favoriteMovies);
+
+        return "/html/favorite";
     }
 }
