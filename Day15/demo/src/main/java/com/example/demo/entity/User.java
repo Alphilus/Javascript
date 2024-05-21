@@ -1,6 +1,6 @@
 package com.example.demo.entity;
 
-import com.example.demo.enums.UserRole;
+import com.example.demo.model.enums.UserRole;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;

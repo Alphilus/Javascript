@@ -1,8 +1,9 @@
 package com.example.demo;
 
+import com.example.demo.config.BeanConfig;
 import com.example.demo.entity.*;
-import com.example.demo.enums.MovieType;
-import com.example.demo.enums.UserRole;
+import com.example.demo.model.enums.MovieType;
+import com.example.demo.model.enums.UserRole;
 import com.example.demo.repository.*;
 import com.github.javafaker.Faker;
 import com.github.slugify.Slugify;
@@ -12,6 +13,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -20,6 +22,8 @@ import java.util.Random;
 
 @SpringBootTest
 class DemoApplicationTests {
+	@Autowired
+	private BCryptPasswordEncoder passwordEncoder;
 	@Autowired
 	private MovieRepository movieRepository;
 
@@ -249,6 +253,30 @@ class DemoApplicationTests {
 	}
 
 	@Test
+	void save_reviews() {
+		Faker faker = new Faker();
+		Random random = new Random();
+
+		List<User> users = userRepository.findByRole(UserRole.USER);
+		List<Movie> movies = movieRepository.findAll();
+
+		for (Movie movie : movies) {
+			// random 5 -> 10 reviews
+			for (int i = 0; i < random.nextInt(6) + 5; i++) {
+				Review review = Review.builder()
+						.content(faker.lorem().paragraph())
+						.rating(random.nextInt(10) + 1)
+						.createdAt(LocalDateTime.now())
+						.updatedAt(LocalDateTime.now())
+						.user(users.get(random.nextInt(users.size())))
+						.movie(movie)
+						.build();
+				reviewRepository.save(review);
+			}
+		}
+	}
+
+	@Test
 	void save_episodes() {
 		List<Movie> movies = movieRepository.findAll();
 		for (Movie movie : movies) {
@@ -347,6 +375,15 @@ class DemoApplicationTests {
 				}
 			}
 		}
+	}
+
+	@Test
+	void update_password_user(){
+		List<User> users = userRepository.findAll();
+        for (User user : users) {
+            user.setPassword(passwordEncoder.encode("123"));
+            userRepository.save(user);
+        }
 	}
 
 	@Test

@@ -1,7 +1,7 @@
 package com.example.demo.repository;
 
 import com.example.demo.entity.Movie;
-import com.example.demo.enums.MovieType;
+import com.example.demo.model.enums.MovieType;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -14,6 +14,7 @@ import java.util.List;
 
 public interface MovieRepository extends JpaRepository<Movie, Integer> {
     List<Movie> findByName(String name);
+    List<Movie> findMovieById(Integer id);
     List<Movie> findMovieByStatus(boolean status);
     List<Movie> findByNameIgnoreCase(String name);
     List<Movie> findByNameContaining(String keyword);

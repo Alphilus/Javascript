@@ -1,7 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.entity.*;
-import com.example.demo.enums.MovieType;
+import com.example.demo.model.enums.MovieType;
 import com.example.demo.service.BlogService;
 import com.example.demo.service.CommentService;
 import com.example.demo.service.MovieService;
@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Controller
 @RequiredArgsConstructor
@@ -34,7 +33,14 @@ public class WebController {
     private ReviewService reviewService;
 
     @GetMapping("/")
-    public String getHomePage(Model model) {
+    public String getHomePage(Model model,
+                              @RequestParam(required = false, defaultValue = "1") int page,
+                              @RequestParam(required = false, defaultValue = "12") int pageSize){
+        Page<Movie> pageData = movieService.GetMovieByStatus(true, page, pageSize);
+        List<Movie> hotMovies = movieService.getHotMovies(true);
+        model.addAttribute("hotMovies", hotMovies);
+        model.addAttribute("pageData", pageData);
+        model.addAttribute("currentPage", page);
         return "/html/index";
     }
     @GetMapping("/phim-bo")
@@ -94,7 +100,7 @@ public class WebController {
             model.addAttribute("episodes", episodes);
         }
 
-        List<Review> reviews = reviewService.getReviewsByMovies(id);
+        List<Review> reviews = reviewService.getReviewsByMovie(id);
         List<String> genreNames = movie.getGenres().stream()
                 .map(Genre::getName)
                 .toList();
@@ -104,5 +110,10 @@ public class WebController {
         model.addAttribute("recommendedMovies", movies);
 
         return "/html/detail";
+    }
+
+    @GetMapping("/dang-nhap")
+    public String getLoginPage() {
+        return "html/login";
     }
 }
