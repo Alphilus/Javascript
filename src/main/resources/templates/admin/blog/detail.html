@@ -19,8 +19,7 @@
     <!-- overlayScrollbars -->
     <link rel="stylesheet" href="/admin-assets/plugins/overlayScrollbars/css/OverlayScrollbars.min.css" />
 
-    <link rel="stylesheet" href="https://unpkg.com/easymde/dist/easymde.min.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/highlight.js/latest/styles/github.min.css" />
+    <link rel="stylesheet" href="https://adminlte.io/themes/v3/plugins/summernote/summernote-bs4.min.css">
 
     <link rel="stylesheet" href="/admin-assets/plugins/select2/css/select2.min.css" />
     <link rel="stylesheet" href="/admin-assets/dist/css/style.css">
@@ -192,17 +191,17 @@
                                     <div class="col-md-8">
                                         <div class="form-group">
                                             <label>Tiêu đề</label>
-                                            <input type="text" class="form-control" id="title" />
+                                            <input type="text" class="form-control" id="title" th:value="${blogs.title}" />
                                         </div>
 
                                         <div class="form-group">
                                             <label>Nội dung</label>
-                                            <textarea id="content"></textarea>
+                                            <textarea id="content" th:text="${blogs.content}"></textarea>
                                         </div>
 
                                         <div class="form-group">
                                             <label>Mô tả ngắn</label>
-                                            <textarea id="description" class="form-control" rows="3"></textarea>
+                                            <textarea id="description" class="form-control" rows="3" th:text="${blogs.description}"></textarea>
                                         </div>
                                     </div>
 
@@ -210,46 +209,21 @@
                                         <div class="form-group">
                                             <label>Trạng thái</label>
                                             <select id="status" class="form-control">
-                                                <option value="0">
-                                                    Nháp
-                                                </option>
-                                                <option value="1">
-                                                    Công khai
-                                                </option>
+                                                <option value="0" th:selected="${blogs.status == 0}">Nháp</option>
+                                                <option value="1" th:selected="${blogs.status == 1}">Công khai</option>
                                             </select>
                                         </div>
                                         <div class="form-group">
                                             <label>Danh mục</label>
                                             <div class="select2-purple">
-                                                <select class="select2 form-control" multiple="multiple"
-                                                        id="category">
-                                                    <option>
-                                                        Java
-                                                    </option>
-                                                    <option>
-                                                        Golang
-                                                    </option>
-                                                    <option>
-                                                        React
-                                                    </option>
-                                                    <option>
-                                                        Lập trình web
-                                                    </option>
-                                                    <option>
-                                                        Database
-                                                    </option>
-                                                    <option>
-                                                        Tips Trick
-                                                    </option>
-                                                    <option>
-                                                        Devops
-                                                    </option>
+                                                <select class="select2 form-control" multiple="multiple" id="category">
+                                                    <option th:each="category : ${blogs.categories}" th:value="${category}" th:text="${category}"></option>
                                                 </select>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <div class="thumbnail-preview-container mb-3">
-                                                <img src="" alt="" id="thumbnail" />
+                                                <img src="" alt="" id="thumbnail" th:src="${blogs.thumbnail}" />
                                             </div>
                                             <button type="button" class="btn btn-info btn-flat" data-toggle="modal"
                                                     data-target="#modal-xl">
@@ -303,8 +277,7 @@
 <!-- AdminLTE App -->
 <script src="/admin-assets/dist/js/adminlte.js"></script>
 
-<script src="https://unpkg.com/easymde/dist/easymde.min.js"></script>
-<script src="https://cdn.jsdelivr.net/highlight.js/latest/highlight.min.js"></script>
+<script src="https://adminlte.io/themes/v3/plugins/summernote/summernote-bs4.min.js"></script>
 
 <script src="/admin-assets/plugins/select2/js/select2.full.min.js"></script>
 
@@ -313,20 +286,20 @@
     $(".select2").select2();
 
     // Initialize editor
-    const easyMDE = new EasyMDE({
-        element: document.getElementById("content"),
-        spellChecker: false,
-        maxHeight: "500px",
-        renderingConfig: {
-            codeSyntaxHighlighting: true,
-        },
+    $('#content').summernote({
+        height: 500,
+        codeviewFilter: false,
+        codeviewIframeFilter: true,
+        codemirror: {
+            theme: 'monokai'
+        }
     });
 
     // Initialize data
     const initData = (data) => {
         $("#title").val(data.title);
-        easyMDE.value(data.content);
-        $("#description").html(data.description);
+        $('#content').summernote('code', data.content);
+        $("#description").val(data.description);
         $("#status").val(data.status);
         $("#category").val(data.categories).trigger("change");
         $("#thumbnail").attr("src", data.thumbnail);

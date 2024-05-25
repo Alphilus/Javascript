@@ -53,4 +53,13 @@ public class BlogService {
 
         return blogRepository.save(blog);
     }
+
+    public Blog getOwnBlogDetails(Integer id){
+        User user = (User) session.getAttribute("currentUser");
+        if (user!= null) {
+            return blogRepository.findUserBlogById(id);
+        } else {
+            return null; // Return null if no user is found in the session
+        }
+    }
 }
