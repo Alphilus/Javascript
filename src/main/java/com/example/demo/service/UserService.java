@@ -4,16 +4,13 @@ import com.example.demo.entity.Favorite;
 import com.example.demo.entity.Movie;
 import com.example.demo.entity.User;
 import com.example.demo.model.request.UpdatePasswordRequest;
-import com.example.demo.model.request.UpdateProfileUserRequest;
 import com.example.demo.repository.FavoriteRepository;
 import com.example.demo.repository.MovieRepository;
 import com.example.demo.repository.UserRepository;
-import jakarta.persistence.EntityManager;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -47,11 +44,11 @@ public class UserService {
         return user != null ? user.getId() : null;
     }
 
-    public User updateUserProfile(Integer id, String name) {
+    public void updateUserProfile(Integer id, String name) {
         User user = (User) session.getAttribute("currentUser");
         if (user != null){
             user.setName(name);
-            return userRepository.save(user);
+            userRepository.save(user);
         } else {
             throw new IllegalArgumentException("User not found with ID: " + id);
         }

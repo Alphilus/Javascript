@@ -284,15 +284,17 @@
                 // Handle form submission
                 $.ajax({
                     type: "POST",
-                    url: "/blogs", // URL to your Spring Boot controller
+                    url: "/api/blog/create", // URL to your Spring Boot controller
                     data: $(form).serialize(), // Serialize form data
                     success: function(response) {
                         console.log("Form submitted successfully!");
-                        // Optionally, display a notification using toastr
+                        // Display a success notification using Toastr
+                        toastr.success("Blog created successfully!");
                     },
                     error: function(error) {
                         console.error("Form submission failed:", error);
-                        // Optionally, display an error notification using toastr
+                        // Display an error notification using Toastr
+                        toastr.error("Failed to create blog. Please try again later.");
                     }
                 });
             }

@@ -48,8 +48,8 @@ public class BlogController {
         return "admin/blog/create";
     }
 
-    @PostMapping("/blogs")
-    public Blog createBlog(@RequestBody Blog blog) {
-        return blogService.saveBlog(blog);
-    }
+//    @PostMapping("/blogs")
+//    public Blog createBlog(@RequestBody Blog blog) {
+//        return blogService.saveBlog(blog);
+//    }
 }

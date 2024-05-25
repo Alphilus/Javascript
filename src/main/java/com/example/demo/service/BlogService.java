@@ -9,7 +9,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -46,12 +45,20 @@ public class BlogService {
         }
     }
 
-    public Blog saveBlog(Blog blog){
-        LocalDateTime now = LocalDateTime.now();
-        blog.setCreatedAt(now);
-        blog.setUpdatedAt(now);
-
-        return blogRepository.save(blog);
+    public void updateBlog(Integer id, UpsertBlogRequest request){
+        User user = (User) session.getAttribute("currentUser");
+        Blog blog = blogRepository.findById(id)
+               .orElseThrow(() -> new RuntimeException("Blog not found"));
+        if (user!= null && user.getId().equals(blog.getUser().getId())) {
+            blog.setTitle(request.getTitle());
+            blog.setContent(request.getContent());
+            blog.setDescription(request.getDescription());
+            blog.setStatus(request.getStatus());
+            blog.setUpdatedAt(LocalDateTime.now());
+            blogRepository.save(blog);
+        } else {
+            throw new IllegalArgumentException("Blog not found with ID: " + id);
+        }
     }
 
     public Blog getOwnBlogDetails(Integer id){
