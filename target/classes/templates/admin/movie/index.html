@@ -4,20 +4,25 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>AdminLTE 3 | Dashboard</title>
+    <title>Danh sách phim</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
           href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback" />
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css" />
+    <link rel="stylesheet" href="/admin-assets/plugins/fontawesome-free/css/all.min.css" />
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" />
 
     <!-- Theme style -->
-    <link rel="stylesheet" href="dist/css/adminlte.min.css" />
+    <link rel="stylesheet" href="/admin-assets/dist/css/adminlte.min.css" />
     <!-- overlayScrollbars -->
-    <link rel="stylesheet" href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css" />
+    <link rel="stylesheet" href="/admin-assets/plugins/overlayScrollbars/css/OverlayScrollbars.min.css" />
+
+    <!-- Datatable -->
+    <link rel="stylesheet" href="/admin-assets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css" />
+    <link rel="stylesheet" href="/admin-assets/plugins/datatables-responsive/css/responsive.bootstrap4.min.css" />
+    <link rel="stylesheet" href="/admin-assets/plugins/datatables-buttons/css/buttons.bootstrap4.min.css" />
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -139,12 +144,8 @@
                 <div class="row mb-2">
                     <div class="col-sm-12">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item">
-                                <a href="#">Dashboard</a>
-                            </li>
-                            <li class="breadcrumb-item active">
-                                Danh sách bài viết
-                            </li>
+                            <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+                            <li class="breadcrumb-item active">Danh sách phim</li>
                         </ol>
                     </div>
                 </div>
@@ -157,9 +158,9 @@
                 <div class="row py-2">
                     <div class="col-12">
                         <button type="button" class="btn btn-primary">
-                            <i class="fas fa-plus"></i> Viết bài
+                            <i class="fas fa-plus"></i> Thêm phim
                         </button>
-                        <button type="button" class="btn btn-info">
+                        <button type="button" class="btn btn-info" onclick="location.reload();">
                             <i class="fas fa-redo"></i> Refresh
                         </button>
                     </div>
@@ -168,75 +169,31 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                                <table class="table table-bordered table-hover">
+                                <table class="table table-bordered table-hover" id="table-movie">
                                     <thead>
                                     <tr>
-                                        <th>Tiêu đề</th>
-                                        <th>Tác giả</th>
-                                        <th>Danh mục</th>
+                                        <th>Tên phim</th>
+                                        <th>Thể loại</th>
+                                        <th>Năm phát hành</th>
                                         <th>Trạng thái</th>
                                         <th>Ngày tạo</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
+                                    <tr th:each="movie : ${movies}">
+                                        <td th:href="@{/admin/movie/{id} (id=${movie.id})}" th:text="${movie.name}">Movie Name</td>
                                         <td>
-                                            <a href="./blog-detail.html">Khai giảng khóa
-                                                Java Spring Boot 12A
-                                                - song song 2 hình
-                                                thức offline /
-                                                online đáp ứng nhu
-                                                cầu đào tạo từ xa</a>
+                                            <span th:each="genre, iterStat : ${movie.genres}">
+                                                <span th:text="${genre.name}"></span>
+                                                <span th:if="${!iterStat.last}">, </span>
+                                            </span>
                                         </td>
-                                        <td>
-                                            <a href="#">John Doe</a>
-                                        </td>
-                                        <td>
-                                            Java, Golang, Springboot
-                                        </td>
-                                        <td>Công khai</td>
-                                        <td>06-07-2022</td>
+                                        <td th:text="${movie.releaseYear}">2022</td>
+                                        <td th:text="${movie.status ? 'Công Chiếu' : 'Chưa Công Chiếu'}">Công khai</td>
+                                        <td th:text="${#temporals.format(movie.createdAt, 'dd/MM/yyyy')}">06-07-2022</td>
                                     </tr>
                                     </tbody>
                                 </table>
-
-                                <div class="d-flex justify-content-center mt-3" id="pagination">
-                                    <ul class="pagination mb-0">
-                                        <li class="paginate_button page-item previous disabled"
-                                            id="example2_previous">
-                                            <a href="#" aria-controls="example2" data-dt-idx="0" tabindex="0"
-                                               class="page-link">Previous</a>
-                                        </li>
-                                        <li class="paginate_button page-item active">
-                                            <a href="#" aria-controls="example2" data-dt-idx="1" tabindex="0"
-                                               class="page-link">1</a>
-                                        </li>
-                                        <li class="paginate_button page-item">
-                                            <a href="#" aria-controls="example2" data-dt-idx="2" tabindex="0"
-                                               class="page-link">2</a>
-                                        </li>
-                                        <li class="paginate_button page-item">
-                                            <a href="#" aria-controls="example2" data-dt-idx="3" tabindex="0"
-                                               class="page-link">3</a>
-                                        </li>
-                                        <li class="paginate_button page-item">
-                                            <a href="#" aria-controls="example2" data-dt-idx="4" tabindex="0"
-                                               class="page-link">4</a>
-                                        </li>
-                                        <li class="paginate_button page-item">
-                                            <a href="#" aria-controls="example2" data-dt-idx="5" tabindex="0"
-                                               class="page-link">5</a>
-                                        </li>
-                                        <li class="paginate_button page-item">
-                                            <a href="#" aria-controls="example2" data-dt-idx="6" tabindex="0"
-                                               class="page-link">6</a>
-                                        </li>
-                                        <li class="paginate_button page-item next" id="example2_next">
-                                            <a href="#" aria-controls="example2" data-dt-idx="7" tabindex="0"
-                                               class="page-link">Next</a>
-                                        </li>
-                                    </ul>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -246,16 +203,37 @@
     </div>
 </div>
 
+
 <!-- jQuery -->
-<script src="plugins/jquery/jquery.min.js"></script>
-
+<script src="/admin-assets/plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
-<script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-
+<script src="/admin-assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- overlayScrollbars -->
-<script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+<script src="/admin-assets/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
 <!-- AdminLTE App -->
-<script src="dist/js/adminlte.js"></script>
+<script src="/admin-assets/dist/js/adminlte.js"></script>
+<!-- Datatable -->
+<script src="/admin-assets/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="/admin-assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="/admin-assets/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+<script src="/admin-assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+<script src="/admin-assets/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+<script src="/admin-assets/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+        $('#table-movie').DataTable({
+            "paging": true,
+            "lengthChange": false,
+            "searching": true,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false,
+            "responsive": true,
+        });
+    });
+</script>
+
 </body>
 
 </html>
