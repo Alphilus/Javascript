@@ -21,6 +21,9 @@ public class MovieService {
 
     @Autowired
     private EpisodeRepository episodeRepository;
+    public List<Movie> getAllMovies() {
+        return movieRepository.findAll(Sort.by(Sort.Direction.DESC, "createdAt"));
+    }
 
     public Movie getMovieById(Integer id, String slug) {
         return movieRepository.findMovieByIdAndSlug(id, slug);

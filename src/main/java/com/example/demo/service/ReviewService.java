@@ -21,34 +21,33 @@ import java.util.List;
 public class ReviewService {
     private final ReviewRepository reviewRepository;
     private final MovieRepository movieRepository;
-    private final UserRepository userRepository;
     private final HttpSession session;
 
     public List<Review> getReviewsByMovie(Integer id) {
         return reviewRepository.findByMovie_IdOrderByCreatedAtDesc(id);
     }
 
-    // TODO: Validate thong tin: content, rating, ... su dung thu vien Validation
-    public Review createReview(UpsertReviewRequest request) {
-        User user = (User) session.getAttribute("currentUser");
+        // TODO: Validate thong tin: content, rating, ... su dung thu vien Validation
+        public Review createReview(UpsertReviewRequest request) {
+            User user = (User) session.getAttribute("currentUser");
 
-        // Kiem tra xem movie co ton tai hay khong?
-        Movie movie = movieRepository.findById(request.getMovieId())
-                .orElseThrow(() -> new ResourceNotFoundException("Movie not found"));
+            // Kiem tra xem movie co ton tai hay khong?
+            Movie movie = movieRepository.findById(request.getMovieId())
+                    .orElseThrow(() -> new ResourceNotFoundException("Movie not found"));
 
-        // Tao review
-        Review review = Review.builder()
-                .content(request.getContent())
-                .rating(request.getRating())
-                .createdAt(LocalDateTime.now())
-                .updatedAt(LocalDateTime.now())
-                .movie(movie)
-                .user(user)
-                .build();
+            // Tao review
+            Review review = Review.builder()
+                    .content(request.getContent())
+                    .rating(request.getRating())
+                    .createdAt(LocalDateTime.now())
+                    .updatedAt(LocalDateTime.now())
+                    .movie(movie)
+                    .user(user)
+                    .build();
 
-        reviewRepository.save(review);
-        return review;
-    }
+            reviewRepository.save(review);
+            return review;
+        }
 
     public Review updateReview(Integer id, UpsertReviewRequest request) {
         Review review = reviewRepository.findById(id)

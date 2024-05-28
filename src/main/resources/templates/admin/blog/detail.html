@@ -216,12 +216,13 @@
                                             </div>
                                             <div class="form-group">
                                                 <div class="thumbnail-preview-container mb-3">
-                                                    <img src="" alt="" id="thumbnail" th:src="${blogs.thumbnail}" />
+                                                    <img src="" alt="" id="thumbnail"/>
                                                 </div>
-                                                <button type="button" class="btn btn-info btn-flat" data-toggle="modal"
+                                                <label class="btn btn-info btn-flat" data-toggle="modal"
                                                         data-target="#modal-xl">
                                                     Chọn hình ảnh
-                                                </button>
+                                                </label>
+                                                <input type="file" id="input-thumbnail" class="d-none">
                                             </div>
                                         </div>
                                     </div>
@@ -361,7 +362,31 @@
             }
         });
     });
+
+    //Upload img
+    const inputThumbnailEl = document.getElementById("input-thumbnail");
+    const thumbnailEl = document.getElementById("thumbnail");
+
+    inputThumbnailEl.addEventListener("change", async (event) => {
+        //Lấy file upload
+        const file = event.target.files;
+
+        //Tạo đối tượng form data
+        const formData = new FormData();
+        formData.append("thumbnail", file[0]);
+
+        //gọi api
+        try {
+            let res = await axois.post('api/admin/blogs/{blog.id}/upload-thumbnail', formData);
+            console.log(res);
+
+            thumbnailEl.src = res.data;
+        } catch (e) {
+            console.log(e)
+        }
+    })
 </script>
+
 </body>
 
 </html>

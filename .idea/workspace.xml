@@ -5,21 +5,32 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d9dc79d8-afc6-42b5-bf34-80200299e60d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/rest/BlogApi.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/config/CloudinaryConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/controller/MovieController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/model/request/CreateMovieRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/service/FileService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/controller/BlogController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/controller/BlogController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/rest/BlogApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/rest/BlogApi.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/rest/MovieApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/rest/MovieApi.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/service/BlogService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/service/BlogService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/service/MovieService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/service/MovieService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/service/ReviewService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/service/ReviewService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/admin/blog/create.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/admin/blog/create.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/movie-review.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/js/movie-review.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/admin/blog/detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/admin/blog/detail.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demo/controller/BlogController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demo/controller/BlogController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demo/repository/BlogRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demo/repository/BlogRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/admin/movie/create.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/admin/movie/create.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/admin/movie/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/admin/movie/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/admin/movie/own.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demo/rest/MovieApi.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demo/rest/MovieApi.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/example/demo/service/BlogService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demo/service/BlogService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/example/demo/service/ReviewService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demo/service/ReviewService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/admin/blog/create.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/admin/blog/create.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/movie-review.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/movie-review.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/templates/admin/blog/detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/admin/blog/detail.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/admin/movie/create.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/admin/movie/create.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/example/demo/DemoApplicationTests.class" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -244,7 +255,12 @@
       <workItem from="1716464910897" duration="8070000" />
       <workItem from="1716519022182" duration="1199000" />
       <workItem from="1716544882724" duration="128000" />
-      <workItem from="1716601977588" duration="24152000" />
+      <workItem from="1716601977588" duration="24301000" />
+      <workItem from="1716632467542" duration="2000" />
+      <workItem from="1716637670471" duration="118000" />
+      <workItem from="1716637798472" duration="7495000" />
+      <workItem from="1716775064067" duration="7592000" />
+      <workItem from="1716860287690" duration="10449000" />
     </task>
     <task id="LOCAL-00001" summary="commit">
       <option name="closed" value="true" />
@@ -270,7 +286,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716620027433</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="commit">
+      <option name="closed" value="true" />
+      <created>1716631865043</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1716631865043</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

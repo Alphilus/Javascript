@@ -9,16 +9,20 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/reviews")
 @RequiredArgsConstructor
 public class MovieApi {
-    private ReviewService reviewService;
+    private final ReviewService reviewService;
 
     // Tạo review
     @PostMapping
     public ResponseEntity<?> createReview(@RequestBody UpsertReviewRequest request) {
-        Review review = reviewService.createReview(request);
-        return new ResponseEntity<>(review, HttpStatus.CREATED); // 201
+        try {
+            Review review = reviewService.createReview(request);
+            return new ResponseEntity<>(review, HttpStatus.CREATED);
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
     }
 
     // Cập nhật review

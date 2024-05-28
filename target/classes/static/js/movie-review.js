@@ -129,14 +129,15 @@ formReviewEl.addEventListener("submit", async (e) => {
     // Gọi API
     try {
         let res = await axios.post("/api/reviews", data);
-        reviews.unshift(res.data);
-        renderReview(reviews);
+        if (res.status === 201) {
+            reviews.unshift(res.data);
+            renderReview(reviews);
 
-        // Dong modal
-        myModalReviewEl.hide();
-
-        toastr.success("Đánh giá thành công");
+            myModalReviewEl.hide();
+            toastr.success("Đánh giá thành công");
+        }
     } catch (e) {
-        console.log(e)
+        console.error(e);
+        toastr.error("Có lỗi xảy ra, vui lòng thử lại sau.");
     }
 })
