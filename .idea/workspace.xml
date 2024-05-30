@@ -5,33 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d9dc79d8-afc6-42b5-bf34-80200299e60d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/model/request/CreateEpisodeRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/model/request/UpdateEpisodeRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/admin/fragments/navigation.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/admin/fragments/sidebar.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/admin/layout/layout.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/controller/MovieController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/controller/MovieController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/repository/MovieRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/repository/MovieRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/rest/AdminApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/rest/AdminApi.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/service/MovieService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/service/MovieService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/admin/blog/create.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/admin/blog/create.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/admin/blog/detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/admin/blog/detail.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/admin/blog/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/admin/blog/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/admin/blog/own.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/admin/blog/own.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/admin/movie/create.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/admin/movie/create.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/admin/movie/detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/admin/movie/detail.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/admin/movie/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/admin/movie/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demo/repository/MovieRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demo/repository/MovieRepository.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/example/demo/service/MovieService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demo/service/MovieService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/admin/blog/create.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/admin/blog/create.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/admin/blog/detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/admin/blog/detail.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/admin/blog/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/admin/blog/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/admin/blog/own.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/admin/blog/own.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/admin/movie/create.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/admin/movie/create.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/templates/admin/movie/detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/admin/movie/detail.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/admin/movie/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/admin/movie/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -269,7 +247,7 @@
       <workItem from="1717034045594" duration="7862000" />
       <workItem from="1717044266787" duration="80000" />
       <workItem from="1717044356348" duration="404000" />
-      <workItem from="1717047147493" duration="1333000" />
+      <workItem from="1717047147493" duration="3856000" />
     </task>
     <task id="LOCAL-00001" summary="commit">
       <option name="closed" value="true" />
@@ -319,7 +297,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716879122422</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="commit">
+      <option name="closed" value="true" />
+      <created>1717048488480</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1717048488480</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

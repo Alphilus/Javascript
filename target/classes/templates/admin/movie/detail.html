@@ -304,6 +304,7 @@
         $(document).ready(function () {
             $(".select2").select2();
 
+            // Create Episode
             $("#btn-create-episode").on("click", function () {
                 if ($("#form-episode").valid()) {
                     $.ajax({
@@ -328,6 +329,7 @@
                 }
             });
 
+            // Validate Create Episode Form
             $("#form-episode").validate({
                 rules: {
                     "episode-name": {
@@ -366,7 +368,7 @@
 
             // Update Episode
             $("#btn-update-episode").on("click", function () {
-                if ($("#update-episode").valid()) {
+                if ($("#form-update").valid()) {
                     $.ajax({
                         url: '/api/admin/movies/episodes/update',
                         type: 'POST',
@@ -389,7 +391,7 @@
             });
 
             // Validate Update Episode Form
-            $("#update-episode").validate({
+            $("#form-update").validate({
                 rules: {
                     "update-name": {
                         required: true,
@@ -425,6 +427,7 @@
                 }
             });
         });
+
     </script>
 
 </th:block>
