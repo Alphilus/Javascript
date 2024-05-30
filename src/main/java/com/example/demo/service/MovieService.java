@@ -4,7 +4,9 @@ package com.example.demo.service;
 import com.example.demo.entity.*;
 import com.example.demo.exception.ResourceNotFoundException;
 import com.example.demo.model.enums.MovieType;
+import com.example.demo.model.request.CreateEpisodeRequest;
 import com.example.demo.model.request.CreateMovieRequest;
+import com.example.demo.model.request.UpdateEpisodeRequest;
 import com.example.demo.repository.*;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -14,6 +16,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -36,6 +39,10 @@ public class MovieService {
 
     public Movie getMovieById(Integer id, String slug) {
         return movieRepository.findMovieByIdAndSlug(id, slug);
+    }
+
+    public Movie getMovieByIdOnly(Integer id) {
+        return movieRepository.findMovieById(id);
     }
 
     public List<Movie> getHotMovies(boolean status) {
@@ -73,7 +80,6 @@ public class MovieService {
     }
 
     public Movie createMovie(CreateMovieRequest request){
-        User user = (User) session.getAttribute("currentUser");
 
         Country country = countryRepository.findById(request.getCountryId())
                 .orElseThrow(() -> new ResourceNotFoundException("Country not found"));
@@ -110,5 +116,35 @@ public class MovieService {
                 .build();
 
         return movieRepository.save(movie);
+    }
+
+    public Episode createEpisode(CreateEpisodeRequest request){
+        Movie movie = movieRepository.findById(request.getMovieId())
+                .orElseThrow(() -> new ResourceNotFoundException("Movie not found"));
+
+        Episode episode = Episode.builder()
+                .name(request.getName())
+                .duration(request.getDuration())
+                .videoUrl(request.getVideoUrl())
+                .displayOrder(request.getDisplayOrder())
+                .createdAt(LocalDateTime.now())
+                .updatedAt(LocalDateTime.now())
+                .movie(movie)
+                .build();
+
+        return episodeRepository.save(episode);
+    }
+
+    public Episode updateEpisode(UpdateEpisodeRequest request){
+        Episode episode = episodeRepository.findById(request.getId())
+                .orElseThrow(() -> new ResourceNotFoundException("Episode not found"));
+
+        episode.setName(request.getName());
+        episode.setVideoUrl(request.getVideoUrl());
+        episode.setDuration(request.getDuration());
+        episode.setDisplayOrder(request.getDisplayOrder());
+        episode.setUpdatedAt(LocalDateTime.now());
+
+        return episodeRepository.save(episode);
     }
 }

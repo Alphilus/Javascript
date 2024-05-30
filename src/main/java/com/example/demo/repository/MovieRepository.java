@@ -14,7 +14,7 @@ import java.util.List;
 
 public interface MovieRepository extends JpaRepository<Movie, Integer> {
     List<Movie> findByName(String name);
-    List<Movie> findMovieById(Integer id);
+    Movie findMovieById(Integer id);
     List<Movie> findMovieByStatus(boolean status);
     List<Movie> findByNameIgnoreCase(String name);
     List<Movie> findByNameContaining(String keyword);
