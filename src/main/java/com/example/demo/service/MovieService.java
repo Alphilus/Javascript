@@ -139,19 +139,11 @@ public class MovieService {
         Episode episode = episodeRepository.findById(request.getId())
                 .orElseThrow(() -> new ResourceNotFoundException("Episode not found"));
 
-        // Use the Builder pattern to construct a new episode with updated properties
-        Episode updatedEpisode = Episode.builder()
-                .name(request.getName())
-                .videoUrl(request.getVideoUrl())
-                .duration(request.getDuration())
-                .displayOrder(request.getDisplayOrder())
-                .build();
 
-        // Update the existing episode with the new properties
-        episode.setName(updatedEpisode.getName());
-        episode.setVideoUrl(updatedEpisode.getVideoUrl());
-        episode.setDuration(updatedEpisode.getDuration());
-        episode.setDisplayOrder(updatedEpisode.getDisplayOrder());
+        episode.setName(request.getName());
+        episode.setVideoUrl(request.getVideoUrl());
+        episode.setDuration(request.getDuration());
+        episode.setDisplayOrder(request.getDisplayOrder());
         episode.setUpdatedAt(LocalDateTime.now());
 
         return episodeRepository.save(episode);

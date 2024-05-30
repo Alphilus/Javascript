@@ -228,7 +228,10 @@
                                                     data-target="#modal-trailer">
                                                 <i class="fas fa-play"></i>
                                             </button>
-                                            <button class="btn btn-sm btn-success" type="button" data-toggle="modal"
+                                            <button class="btn btn-sm btn-success btn-update-episode"
+                                                    data-episode-id="${episode.id}"
+                                                    type="button"
+                                                    data-toggle="modal"
                                                     data-target="#modal-update">
                                                 <i class="fas fa-pencil-alt"></i>
                                             </button>
@@ -367,13 +370,19 @@
             });
 
             // Update Episode
-            $("#btn-update-episode").on("click", function () {
+            $(".btn-update-episode").on("click", function () {
+                // Get the episode ID from the data attribute
+                const episodeId = $(this).data("episode-id");
+
+                // You can now use the episodeId variable to perform your update operation
+                // For example, you can pass the episodeId along with other form data in your AJAX request
                 if ($("#form-update").valid()) {
                     $.ajax({
                         url: '/api/admin/movies/episodes/update',
                         type: 'POST',
                         contentType: 'application/json',
                         data: JSON.stringify({
+                            id: episodeId, // Pass the episode ID
                             name: $('#update-name').val(),
                             videoUrl: $('#update-url').val(),
                             duration: $('#update-duration').val(),
