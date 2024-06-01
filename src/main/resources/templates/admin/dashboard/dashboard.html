@@ -109,7 +109,7 @@
                                                         </tr>
                                                         </thead>
                                                         <tbody>
-                                                        <tr th:each="movie : ${movies}">
+                                                        <tr th:each="movie, iterStat : ${movies}" th:if="${iterStat.index lt 5}">
                                                             <td><a th:href="'/phim/' + ${movie.id} + '/' + ${movie.slug}" th:text="${movie.name}"></a></td>
                                                             <td>
                                                                 <ul>
@@ -145,7 +145,7 @@
                                                         </tr>
                                                         </thead>
                                                         <tbody>
-                                                        <tr th:each="user : ${users}">
+                                                        <tr th:each="user, iterStat : ${users}" th:if="${iterStat.index < 5}">
                                                             <td><a th:href="'/admin/users/' + ${user.id}" th:text="${user.name}"></a></td>
                                                             <td th:text="${user.email}"></td>
                                                             <td th:text="${user.createdAt}"></td>
@@ -173,68 +173,84 @@
 <th:block id="js">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-    /*
-    data = [
-    {
-    month: 11
-    year: 2023
-    movieCount: 6
-    },
-    {
-    month: 12
-    year: 2023
-    movieCount: 15
-    },
-    {
-    month: 1
-    year: 2024
-    movieCount: 8
-    }
-    ]
-    */
+<!--    /*-->
+<!--    data = [-->
+<!--    {-->
+<!--    month: 11-->
+<!--    year: 2023-->
+<!--    movieCount: 6-->
+<!--    },-->
+<!--    {-->
+<!--    month: 12-->
+<!--    year: 2023-->
+<!--    movieCount: 15-->
+<!--    },-->
+<!--    {-->
+<!--    month: 1-->
+<!--    year: 2024-->
+<!--    movieCount: 8-->
+<!--    }-->
+<!--    ]-->
+<!--    */-->
     <script>
-        const movieData = data.movie
-        // Movie chart
-        const ctxMovie = document.getElementById('movie-chart');
-        new Chart(ctxMovie, {
-            type: 'bar',
-            data: {
-                labels: ["Tháng 1/2024", "Tháng 2/2024", "Tháng 3/2024", "Tháng 4/2024", "Tháng 5/2024"], // data.map(el => `Tháng ${el.month}/${el.year}`)
-                datasets: [{
-                    label: 'Phim cập nhật theo tháng',
-                    data: [12, 19, 3, 5, 8], // data.map(el => el.movieCount)
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
+        // Fetch movie data
+        $.ajax({
+            url: '/api/admin/dashboard/data',
+            type: 'GET',
+            success: function(data) {
+                new Chart(document.getElementById('movie-chart'), {
+                    type: 'bar',
+                    data: {
+                        labels: data.movies.map(el => el.monthYear), // Thay đổi tên thuộc tính tùy theo định dạng dữ liệu trả về
+                        datasets: [{
+                            label: 'Phim cập nhật theo tháng',
+                            data: data.movies.map(el => el.movieCount), // Thay đổi tên thuộc tính tùy theo định dạng dữ liệu trả về
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
                     }
-                }
+                });
+            },
+            error: function(xhr, status, error) {
+                alert('Failed to fetch movie data: ' + xhr.responseText);
             }
         });
 
-        // User chart
-        const ctxUser = document.getElementById('user-chart');
-        new Chart(ctxUser, {
-            type: 'line',
-            data: {
-                labels: ["Tháng 1/2024", "Tháng 2/2024", "Tháng 3/2024", "Tháng 4/2024", "Tháng 5/2024"],
-                datasets: [{
-                    label: 'User đăng ký theo tháng',
-                    data: [20, 34, 54, 26, 62],
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
+        // Fetch user data
+        $.ajax({
+            url: '/api/admin/dashboard/data',
+            type: 'GET',
+            success: function(data) {
+                new Chart(document.getElementById('user-chart'), {
+                    type: 'line',
+                    data: {
+                        labels: data.users.map(el => el.monthYear), // Thay đổi tên thuộc tính tùy theo định dạng dữ liệu trả về
+                        datasets: [{
+                            label: 'User đăng ký theo tháng',
+                            data: data.users.map(el => el.userCount), // Thay đổi tên thuộc tính tùy theo định dạng dữ liệu trả về
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
                     }
-                }
+                });
+            },
+            error: function(xhr, status, error) {
+                alert('Failed to fetch user data: ' + xhr.responseText);
             }
         });
+    
     </script>
 </th:block>
 

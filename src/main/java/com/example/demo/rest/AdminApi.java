@@ -14,7 +14,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/admin")
@@ -53,11 +55,17 @@ public class AdminApi {
         }
     }
 
-    @PostMapping("/dashboard/data")
+    @GetMapping("/dashboard/data")
     public ResponseEntity<?> getDashboardData() {
         List<Movie> movieData = dashboardService.getMovieList(true);
-        List<User> episodeData = dashboardService.getUserList(UserRole.USER);
+        List<User> userData = dashboardService.getUserList(UserRole.USER);
 
+        // Create a map to hold the data
+        Map<String, Object> data = new HashMap<>();
+        data.put("movies", movieData);
+        data.put("users", userData);
 
+        // Return the data as a ResponseEntity
+        return ResponseEntity.ok(data);
     }
 }
