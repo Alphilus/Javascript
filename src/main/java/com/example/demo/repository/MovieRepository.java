@@ -11,10 +11,15 @@ import org.springframework.data.repository.query.Param;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 public interface MovieRepository extends JpaRepository<Movie, Integer> {
     List<Movie> findByName(String name);
     Movie findMovieById(Integer id);
+
+    Optional<Movie> findByIdAndSlugAndStatus(Integer id, String slug, Boolean status);
+    List<Movie> findByTypeAndStatusAndRatingGreaterThanEqualAndIdNotOrderByRatingDescCreatedAtDesc(MovieType type, Boolean status, double raying, Integer id);
+    List<Movie> findMoviesByType(MovieType movieType);
     List<Movie> findMovieByStatus(boolean status);
     List<Movie> findByNameIgnoreCase(String name);
     List<Movie> findByNameContaining(String keyword);

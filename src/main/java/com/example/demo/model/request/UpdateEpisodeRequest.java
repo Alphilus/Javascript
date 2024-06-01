@@ -10,7 +10,6 @@ import lombok.experimental.FieldDefaults;
 @ToString
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class UpdateEpisodeRequest {
-    Integer id;
     String name;
     Integer duration;
     String videoUrl;

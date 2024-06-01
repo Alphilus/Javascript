@@ -11,6 +11,7 @@ import java.util.List;
 public interface BlogRepository extends JpaRepository<Blog, Integer> {
     List<Blog> findAll(Sort createdAt);
     Blog findUserBlogById(Integer id);
+    List<Blog> findAllByStatus(Boolean status);
     Page<Blog> findBlogByStatus(Boolean status, Pageable pageable);
     List<Blog> findByUser_IdOrderByCreatedAtDesc(Integer id);
     Blog findBySlugAndId(String slug, Integer id);

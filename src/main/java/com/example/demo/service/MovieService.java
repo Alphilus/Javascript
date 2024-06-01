@@ -37,6 +37,21 @@ public class MovieService {
         return movieRepository.findAll(Sort.by(Sort.Direction.DESC, "createdAt"));
     }
 
+    public Movie getMovie(Integer id, String slug, Boolean status) {
+        return movieRepository.findByIdAndSlugAndStatus(id, slug, status).orElse(null);
+    }
+
+    public List<Movie> getRelatedMovies(Integer id, MovieType type, Boolean status, Integer size) {
+        return movieRepository.findByTypeAndStatusAndRatingGreaterThanEqualAndIdNotOrderByRatingDescCreatedAtDesc(type, status, 5.0, id)
+                .stream()
+                .limit(size)
+                .toList();
+    }
+
+    public List<Movie> getMoviesByType(MovieType movieType) {
+        return movieRepository.findMoviesByType(movieType);
+    }
+
     public Movie getMovieById(Integer id, String slug) {
         return movieRepository.findMovieByIdAndSlug(id, slug);
     }
@@ -45,8 +60,9 @@ public class MovieService {
         return movieRepository.findMovieById(id);
     }
 
-    public List<Movie> getHotMovies(boolean status) {
-        return movieRepository.findMovieByStatus(status);
+    public Page<Movie> getHotMovies(Boolean status, Integer page, Integer size) {
+        PageRequest pageRequest = PageRequest.of(page - 1, size, Sort.by("rating").descending());
+        return movieRepository.findByStatus(status, pageRequest);
     }
 
     public List<Movie> layDanhSachPhimBo() {
@@ -135,10 +151,9 @@ public class MovieService {
         return episodeRepository.save(episode);
     }
 
-    public Episode updateEpisode(UpdateEpisodeRequest request){
-        Episode episode = episodeRepository.findById(request.getId())
+    public Episode updateEpisode(Integer id,UpdateEpisodeRequest request){
+        Episode episode = episodeRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Episode not found"));
-
 
         episode.setName(request.getName());
         episode.setVideoUrl(request.getVideoUrl());
@@ -147,5 +162,17 @@ public class MovieService {
         episode.setUpdatedAt(LocalDateTime.now());
 
         return episodeRepository.save(episode);
+    }
+
+    public Episode getEpisode(Integer movieId, String tap) {
+        if (tap.equals("full")) {
+            return episodeRepository
+                    .findByMovie_IdAndMovie_StatusAndDisplayOrder(movieId, true, 1)
+                    .orElse(null);
+        } else {
+            return episodeRepository
+                    .findByMovie_IdAndMovie_StatusAndDisplayOrder(movieId, true, Integer.parseInt(tap))
+                    .orElse(null);
+        }
     }
 }

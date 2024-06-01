@@ -228,8 +228,7 @@
                                                     data-target="#modal-trailer">
                                                 <i class="fas fa-play"></i>
                                             </button>
-                                            <button class="btn btn-sm btn-success" type="button" data-toggle="modal"
-                                                    data-target="#modal-update">
+                                            <button class="btn btn-sm btn-success id-episode-btn" type="button" data-toggle="modal" data-target="#modal-update">
                                                 <i class="fas fa-pencil-alt"></i>
                                             </button>
                                             <button class="btn btn-sm btn-danger">
@@ -366,29 +365,49 @@
                 }
             });
 
-            // Update Episode
-            $("#btn-update-episode").on("click", function () {
-                if ($("#form-update").valid()) {
-                    $.ajax({
-                        url: '/api/admin/movies/episodes/update',
-                        type: 'POST',
-                        contentType: 'application/json',
-                        data: JSON.stringify({
-                            name: $('#update-name').val(),
-                            videoUrl: $('#update-url').val(),
-                            duration: $('#update-duration').val(),
-                            displayOrder: $('#update-display-order').val()
-                        }),
-                        success: function(response) {
-                            alert('Episode updated successfully!');
-                            location.reload(); // Refresh the page to show the updated episode
-                        },
-                        error: function(xhr, status, error) {
-                            alert('Failed to update episode: ' + xhr.responseText);
-                        }
-                    });
-                }
+            $(document).on("click", ".id-episode-btn", function () {
+                // Get the episode ID associated with the clicked button
+                var episodeId = $(this).closest("tr").data("episode-id");
+
+                // Store the episode ID in a variable
+                storeEpisodeId(episodeId);
             });
+
+            // Update Episode
+            $('#modal-update').on('shown.bs.modal', function () {
+                $("#btn-update-episode").on("click", function () {
+                    // Check if the update form is valid
+                    if ($("#form-update").valid()) {
+                        // Get the episode ID stored earlier
+                        var currentEpisodeId = getCurrentEpisodeId();
+
+                        // Proceed with updating the episode using the currentEpisodeId
+                        $.ajax({
+                            url: '/api/admin/movies/episodes/update',
+                            type: 'POST',
+                            contentType: 'application/json',
+                            data: JSON.stringify({
+                                id: currentEpisodeId,
+                                name: $('#update-name').val(),
+                                videoUrl: $('#update-url').val(),
+                                duration: $('#update-duration').val(),
+                                displayOrder: $('#update-display-order').val()
+                            }),
+                            success: function(response) {
+                                alert('Episode updated successfully!');
+                                location.reload(); // Refresh the page to show the updated episode
+                            },
+                            error: function(xhr, status, error) {
+                                alert('Failed to update episode: ' + xhr.responseText);
+                            }
+                        });
+                    }
+                });
+            });
+
+            function getCurrentEpisodeId() {
+                return currentEpisodeId;
+            }
 
             // Validate Update Episode Form
             $("#form-update").validate({

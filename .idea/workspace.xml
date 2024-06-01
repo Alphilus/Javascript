@@ -4,7 +4,39 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d9dc79d8-afc6-42b5-bf34-80200299e60d" name="Changes" comment="" />
+    <list default="true" id="d9dc79d8-afc6-42b5-bf34-80200299e60d" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/controller/DashBoardController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/service/DashboardService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/service/EpisodeService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/img/favicon.ico" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/img/logo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/admin/dashboard/dashboard.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/html/layout/layout.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/html/xem-phim.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/controller/WebController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/controller/WebController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/model/request/UpdateEpisodeRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/model/request/UpdateEpisodeRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/repository/BlogRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/repository/BlogRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/repository/EpisodeRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/repository/EpisodeRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/repository/MovieRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/repository/MovieRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/repository/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/rest/AdminApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/rest/AdminApi.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/service/MovieService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/service/MovieService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/admin/fragments/sidebar.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/admin/fragments/sidebar.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/admin/movie/detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/admin/movie/detail.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/html/detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/html/detail.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/html/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/html/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/html/tin-tuc-chi-tiet.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/html/tin-tuc-chi-tiet.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demo/controller/WebController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demo/controller/WebController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demo/repository/EpisodeRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demo/repository/EpisodeRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demo/repository/MovieRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demo/repository/MovieRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demo/service/MovieService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demo/service/MovieService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/admin/movie/detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/admin/movie/detail.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/html/detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/html/detail.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/html/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/html/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/html/tin-tuc-chi-tiet.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/html/tin-tuc-chi-tiet.html" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -68,7 +100,7 @@
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;F:/Class Java 23/JavaSpringBoot/SpringBoot/Day15/demo/src/main/resources/templates/admin/user&quot;,
+    &quot;last_opened_file_path&quot;: &quot;F:/Class Java 23/JavaSpringBoot/SpringBoot/Day15/demo/src/main/resources/static/img&quot;,
     &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -80,6 +112,7 @@
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\Class Java 23\JavaSpringBoot\SpringBoot\Day15\demo\src\main\resources\static\img" />
       <recent name="F:\Class Java 23\JavaSpringBoot\SpringBoot\Day15\demo\src\main\resources\templates\admin\user" />
       <recent name="F:\Class Java 23\JavaSpringBoot\SpringBoot\Day15\demo\src\main\resources\templates\admin\movie" />
       <recent name="F:\Class Java 23\JavaSpringBoot\SpringBoot\Day15\demo\src\main\resources\static\admin-assets" />
@@ -242,7 +275,12 @@
       <workItem from="1717044266787" duration="80000" />
       <workItem from="1717044356348" duration="404000" />
       <workItem from="1717047147493" duration="3856000" />
-      <workItem from="1717056874399" duration="392000" />
+      <workItem from="1717056874399" duration="6849000" />
+      <workItem from="1717071123952" duration="4199000" />
+      <workItem from="1717121261956" duration="9360000" />
+      <workItem from="1717156487161" duration="4537000" />
+      <workItem from="1717206334672" duration="4984000" />
+      <workItem from="1717217317737" duration="3599000" />
     </task>
     <task id="LOCAL-00001" summary="commit">
       <option name="closed" value="true" />
@@ -308,7 +346,15 @@
       <option name="project" value="LOCAL" />
       <updated>1717056891170</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="commit">
+      <option name="closed" value="true" />
+      <created>1717057565786</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1717057565786</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
